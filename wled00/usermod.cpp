@@ -50,7 +50,7 @@ void userSetup() {
     Serial.begin(115200);
     Serial.println("Start");
     tft.init();
-    tft.setRotation(3);  //Rotation here is set up for the text to be readable with the port on the left. Use 1 to flip.
+    tft.setRotation(1);  //Rotation here is set up for the text to be readable with the port on the left. Use 1 to flip.
     tft.fillScreen(TFT_BLACK);
     tft.setTextSize(2);
     tft.setTextColor(TFT_WHITE);
