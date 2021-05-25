@@ -221,7 +221,7 @@ void WLED::loop()
 
     yield();
 
-    if (!offMode)
+    if (!offMode || strip.isOffRefreshRequred)
       strip.service();
 #ifdef ESP8266
     else if (!noWifiSleep)
@@ -256,7 +256,7 @@ void WLED::loop()
       strip.isRgbw = (strip.isRgbw || BusManager::isRgbw(busConfigs[i]->type));
       delete busConfigs[i]; busConfigs[i] = nullptr;
     }
-    strip.finalizeInit(ledCount, skipFirstLed);
+    strip.finalizeInit(ledCount);
     yield();
     serializeConfig();
   }
@@ -333,7 +333,7 @@ void WLED::setup()
     errorFlag = ERR_FS_BEGIN;
   } else deEEP();
   updateFSInfo();
-  deserializeConfig();
+  deserializeConfigFromFS();
 
 #if STATUSLED
   bool lStatusLed = false;
@@ -405,7 +405,7 @@ void WLED::beginStrip()
   if (ledCount > MAX_LEDS || ledCount == 0)
     ledCount = 30;
 
-  strip.finalizeInit(ledCount, skipFirstLed);
+  strip.finalizeInit(ledCount);
   strip.setBrightness(0);
   strip.setShowCallback(handleOverlayDraw);
 

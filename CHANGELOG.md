@@ -2,6 +2,43 @@
 
 ### Builds after release 0.12.0
 
+#### Build 2105230
+
+-   No longer retain MQTT `/v` topic to alleviate storage loads on MQTT broker
+-   Fixed Sunrise calculation (atan_t approx. used outside of value range)
+
+#### Build 2105200
+
+-   Fixed WS281x output on ESP32
+-   Fixed potential out-of-bounds write in MQTT
+-   Fixed IR pin not changeable if IR disabled
+-   Fixed XML API <wv> containing -1 on Manual only RGBW mode (see #888, #1783)
+
+#### Build 2105171
+
+-   Always copy MQTT payloads to prevent non-0-terminated strings
+-   Updated ArduinoJson to 6.18.0
+-   Added experimental support for `{"on":"t"}` to toggle on/off state via JSON
+
+#### Build 2105120
+
+-   Fixed possibility of non-0-terminated MQTT payloads
+-   Fixed two warnings regarding integer comparison
+
+#### Build 2105112
+
+-   Usermod settings page no usermods message
+-   Lowered min speed for Drip effect
+
+#### Build 2105111
+
+-   Fixed various Codacy code style and logic issues
+
+#### Build 2105110
+
+-   Added Usermod settings page and configurable usermods (PR #1951)
+-   Added experimental `/json/cfg` endpoint for changing settings from JSON (see #1944, not part of official API)
+
 #### Build 2105070
 
 -   Fixed not turning on after pressing "Off" on IR remote twice (#1950)
